@@ -3,15 +3,18 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use Fluent\Auth\Config\Services;
+use CodeIgniter\View\RendererInterface;
 use Fluent\Auth\Facades\Auth;
 
-class ConfirmablepasswordController extends BaseController
+use function auth;
+use function time;
+
+class ConfirmablePasswordController extends BaseController
 {
     /**
      * Show the confirm password view.
      *
-     * @return \CodeIgniter\View\View
+     * @return RendererInterface
      */
     public function show()
     {
@@ -28,12 +31,12 @@ class ConfirmablepasswordController extends BaseController
         $request = (object) $this->request->getPost();
 
         if (
-            ! Services::auth()->validate([
-            'email' => auth()->user()->email,
-            'password' => $request->password,
+            ! Auth::validate([
+                'email'    => auth()->user()->email,
+                'password' => $request->password,
             ])
         ) {
-            return redirect()->back()->with('error', lang('Auth.password'));
+            return redirect()->back()->with('error', lang('Passwords.confirm'));
         }
 
         session()->set('password_confirmed_at', time());

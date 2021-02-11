@@ -1,40 +1,39 @@
-<?= $this->extend('Auth\Layout\index') ?>
+<?= $this->extend('Auth\layout') ?>
 
 <?= $this->section('content') ?>
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-    <div>
-        <a href="/">
-            <img src="https://codeigniter.com/assets/images/codeigniter4logo.png" class="logo" alt="CodeIgniter Logo" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 85px; width: 85px;">
-        </a>
-    </div>
-
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-        <!-- Validation Errors and Message -->
-        <div class="mb-4 text-sm text-gray-600">
-            Thanks for signing up! Before getting started, could you verify your email address by clicking on
-            the link we just emailed to you? If you didn&#039;t receive the email, we will gladly send you
-            another.
-        </div>
-
-        <?= $this->include('Auth\Layout\errors') ?>
-
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="<?= route_to('verification.send') ?>">
-                <?= csrf_field() ?>
-                <div>
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                        Resend Verification Email
-                    </button>
+<section class="d-flex align-items-center my-5 mt-lg-4 mb-lg-5">
+    <div class="container">
+        <p class="text-center"><a href="/" class="text-gray-700"><i class="fas fa-angle-left me-2"></i> Back to homepage</a></p>
+        <div class="row justify-content-center form-bg-image" data-background-lg="https://cdn.jsdelivr.net/npm/@themesberg/volt-bootstrap-5-dashboard@1.3.1/src/assets/img/illustrations/signin.svg">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <h1 class="mb-0 h3">Verification Account</h1>
+                    </div>
+                    <!-- Validation Errors and Message -->
+                    <?= $this->include('Auth\messages') ?>
+                    <div class="d-flex justify-content-center align-items-center mt-4">
+                        <span class="fw-normal">
+                            Thanks for signing up! Before getting started, could you verify your email address by clicking on
+                            the link we just emailed to you? If you didn&#039;t receive the email, we will gladly send you
+                            another.
+                        </span>
+                    </div>
+                    <form method="post" action="<?= route_to('verification.send') ?>" class="mt-4">
+                        <?= csrf_field() ?>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">Resend Verification Email</button>
+                        </div>
+                    </form>
+                    <form method="post" action="<?= route_to('logout') ?>" class="mt-4">
+                        <?= csrf_field() ?>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">Logout</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-
-            <form method="POST" action="<?= route_to('logout') ?>">
-                <?= csrf_field() ?>
-                <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                    Logout
-                </button>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
 <?= $this->endSection() ?>

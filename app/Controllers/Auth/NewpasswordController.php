@@ -4,17 +4,22 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Events\Events;
-use Fluent\Auth\Config\Services;
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\View\RendererInterface;
 use Fluent\Auth\Contracts\PasswordBrokerInterface;
 use Fluent\Auth\Entities\User;
+use Fluent\Auth\Facades\Passwords;
 use Fluent\Auth\Models\UserModel;
 
-class NewpasswordController extends BaseController
+use function bin2hex;
+use function random_bytes;
+
+class NewPasswordController extends BaseController
 {
     /**
      * Display the password reset view.
      *
-     * @return \CodeIgniter\View\View
+     * @return RendererInterface
      */
     public function new(string $token)
     {
@@ -27,7 +32,7 @@ class NewpasswordController extends BaseController
     /**
      * Handle an incoming new password request.
      *
-     * @return \CodeIgniter\HTTP\RedirectResponse
+     * @return RedirectResponse
      */
     public function create()
     {
@@ -40,7 +45,7 @@ class NewpasswordController extends BaseController
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
-        $status = Services::passwords()->reset(
+        $status = Passwords::reset(
             static::credentials($request),
             function ($user) use ($request) {
                 (new UserModel())->update($user->id, new User([
@@ -51,7 +56,7 @@ class NewpasswordController extends BaseController
                 Events::trigger('firePasswordReset', $user);
             }
         );
-        
+
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
@@ -70,7 +75,7 @@ class NewpasswordController extends BaseController
         return [
             'email'                 => 'required|valid_email',
             'password'              => 'required|min_length[8]',
-            'password_confirmation' => 'matches[password]'
+            'password_confirmation' => 'matches[password]',
         ];
     }
 

@@ -3,15 +3,17 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use Fluent\Auth\Config\Services;
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\View\RendererInterface;
 use Fluent\Auth\Contracts\PasswordBrokerInterface;
+use Fluent\Auth\Facades\Passwords;
 
-class PasswordresetlinkController extends BaseController
+class PasswordResetLinkController extends BaseController
 {
     /**
      * Display the password reset link request view.
      *
-     * @return \CodeIgniter\View\View
+     * @return RendererInterface
      */
     public function new()
     {
@@ -21,7 +23,7 @@ class PasswordresetlinkController extends BaseController
     /**
      * Handle an incomming password reset link request.
      *
-     * @return \CodeIgniter\HTTP\RedirectResponse
+     * @return RedirectResponse
      */
     public function create()
     {
@@ -34,7 +36,7 @@ class PasswordresetlinkController extends BaseController
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
-        $status = Services::passwords()->sendResetLink([
+        $status = Passwords::sendResetLink([
             'email' => $request->email,
         ]);
 

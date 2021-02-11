@@ -4,14 +4,20 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Events\Events;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\I18n\Time;
 
-class VerifyemailController extends BaseController
+use function auth;
+use function hash_equals;
+use function hash_hmac;
+use function sha1;
+
+class VerifyEmailController extends BaseController
 {
     /**
      * Mark the authenticated users email addres as verified.
      *
-     * @return \CodeIgniter\HTTP\RedirectResponse
+     * @return RedirectResponse
      */
     public function index(string $hash)
     {
@@ -19,7 +25,7 @@ class VerifyemailController extends BaseController
         if (auth()->user()->hasVerifiedEmail()) {
             return redirect()->route('dashboard');
         }
-        
+
         // Check if hash equal with current user email.
         if (! hash_equals($hash, sha1(auth()->user()->email))) {
             return redirect()->route('verification.notice')->with('error', lang('Passwords.token'));

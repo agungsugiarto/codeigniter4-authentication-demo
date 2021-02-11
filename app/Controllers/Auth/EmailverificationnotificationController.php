@@ -3,15 +3,18 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use Fluent\Auth\Config\Services;
+use CodeIgniter\HTTP\RedirectResponse;
 use Fluent\Auth\Contracts\PasswordBrokerInterface;
+use Fluent\Auth\Facades\Passwords;
 
-class EmailverificationnotificationController extends BaseController
+use function auth;
+
+class EmailVerificationNotificationController extends BaseController
 {
     /**
      * Send a new verification notification.
      *
-     * @return \CodeIgniter\HTTP\RedirectResponse
+     * @return RedirectResponse
      */
     public function create()
     {
@@ -21,7 +24,7 @@ class EmailverificationnotificationController extends BaseController
             return redirect()->route('dashboard');
         }
 
-        $status = Services::passwords()->sendVerifyLink([
+        $status = Passwords::sendVerifyLink([
             'email' => $user->email,
         ]);
 

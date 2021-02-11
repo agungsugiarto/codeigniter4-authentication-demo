@@ -4,7 +4,9 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 
-class EmailverificationPromptController extends BaseController
+use function auth;
+
+class EmailVerificationPromptController extends BaseController
 {
     /**
      * Display the email verification prompt.

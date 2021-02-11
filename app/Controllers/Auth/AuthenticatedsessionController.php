@@ -3,14 +3,21 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use Fluent\Auth\Config\Services;
+use CodeIgniter\Http\RedirectResponse;
+use CodeIgniter\View\RendererInterface;
+use Fluent\Auth\Facades\Auth;
 
-class AuthenticatedsessionController extends BaseController
+use function func_get_args;
+use function is_array;
+use function is_bool;
+use function trim;
+
+class AuthenticatedSessionController extends BaseController
 {
     /**
      * Display the login view.
      *
-     * @return \CodeIgniter\View\View
+     * @return RendererInterface
      */
     public function new()
     {
@@ -20,7 +27,7 @@ class AuthenticatedsessionController extends BaseController
     /**
      * Handle an incoming authentication request.
      *
-     * @return \CodeIgniter\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function create()
     {
@@ -33,7 +40,7 @@ class AuthenticatedsessionController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        if (! Services::auth()->attempt($credentials, $remember)) {
+        if (! Auth::attempt($credentials, $remember)) {
             return redirect()->back()->withInput()->with('error', lang('Auth.failed'));
         }
 
@@ -43,11 +50,11 @@ class AuthenticatedsessionController extends BaseController
     /**
      * Destroy an authenticated session.
      *
-     * @return \CodeIgniter\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function delete()
     {
-        Services::auth()->logout();
+        Auth::logout();
 
         return redirect('/')->withCookies();
     }

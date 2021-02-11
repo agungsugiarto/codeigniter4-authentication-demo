@@ -1,37 +1,40 @@
-<?= $this->extend('Auth\Layout\index') ?>
+<?= $this->extend('Auth\layout') ?>
 
 <?= $this->section('content') ?>
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-    <div>
-        <a href="/">
-            <img src="https://codeigniter.com/assets/images/codeigniter4logo.png" class="logo" alt="CodeIgniter Logo" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 85px; width: 85px;">
-        </a>
-    </div>
-
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-        <div class="mb-4 text-sm text-gray-600">
-            This is a secure area of the application. Please confirm your password before continuing.
+<section class="d-flex align-items-center my-5 mt-lg-4 mb-lg-5">
+    <div class="container">
+        <p class="text-center"><a href="/" class="text-gray-700"><i class="fas fa-angle-left me-2"></i> Back to homepage</a></p>
+        <div class="row justify-content-center form-bg-image" data-background-lg="https://cdn.jsdelivr.net/npm/@themesberg/volt-bootstrap-5-dashboard@1.3.1/src/assets/img/illustrations/signin.svg">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <h1 class="mb-0 h3">Confirm your password</h1>
+                    </div>
+                    <!-- Validation Errors and Message -->
+                    <?= $this->include('Auth\messages') ?>
+                    <div class="d-flex justify-content-center align-items-center mt-4">
+                        <span class="fw-normal">
+                            This is a secure area of the application. Please confirm your password before continuing.
+                        </span>
+                    </div>
+                    <form method="post" action="<?= route_to('password-confirm') ?>" class="mt-4">
+                        <?= csrf_field() ?>
+                        <!-- Form -->
+                        <div class="form-group mb-2">
+                            <label for="password">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+                                <input type="password" name="password" placeholder="Password" class="form-control" id="password" required autocomplete="current-password">
+                            </div>
+                        </div>
+                        <!-- End of Form -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <!-- Validation Errors -->
-
-        <form method="POST" action="<?= route_to('password-confirm') ?>">
-            <?= csrf_field() ?>
-            <!-- Password -->
-            <div>
-                <label class="block font-medium text-sm text-gray-700" for="password">
-                    Password
-                </label>
-
-                <input class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="password" type="password" name="password" required="required" autocomplete="current-password">
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                    Confirm
-                </button>
-            </div>
-        </form>
     </div>
-</div>
+</section>
 <?= $this->endSection() ?>

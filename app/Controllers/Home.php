@@ -16,8 +16,6 @@ class Home extends BaseController
 
     public function confirm()
     {
-        return $this->response->setJSON([
-            'message' => 'you found treasure!',
-        ]);
+        return 'granted password';
     }
 }
