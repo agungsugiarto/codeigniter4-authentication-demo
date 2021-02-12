@@ -5,6 +5,7 @@ namespace Config;
 use Fluent\Auth\Adapters\SessionAdapter;
 use Fluent\Auth\Adapters\TokenAdapter;
 use App\Models\UserModel;
+use App\Providers\ExampleAdapter;
 use Fluent\Auth\Passwords\PasswordResetRepository;
 
 class Auth extends \Fluent\Auth\Config\Auth
@@ -51,6 +52,14 @@ class Auth extends \Fluent\Auth\Config\Auth
         ],
         'token' => [
             'driver'   => TokenAdapter::class,
+            'provider' => 'users',
+        ],
+        'example' => [
+            'driver' => ExampleAdapter::class,
+            'provider' => 'users',
+        ],
+        'extend' => [
+            'driver' => 'withExtend',
             'provider' => 'users',
         ],
         // etc your implementation

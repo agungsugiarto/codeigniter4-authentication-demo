@@ -2,7 +2,11 @@
 
 namespace Config;
 
+use App\Providers\ExampleAdapter;
 use CodeIgniter\Config\BaseService;
+use Fluent\Auth\Contracts\AuthFactoryInterface;
+use Fluent\Auth\Contracts\AuthenticationInterface;
+use Fluent\Auth\Facades\Auth;
 
 /**
  * Services Configuration file.
@@ -19,13 +23,25 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    // public static function example($getShared = true)
-    // {
-    //     if ($getShared)
-    //     {
-    //         return static::getSharedInstance('example');
-    //     }
-    //
-    //     return new \CodeIgniter\Example();
-    // }
+    /**
+     * Example using service with method extend to driver.
+     * 
+     * @return AuthFactoryInterface|AuthenticationInterface
+     */
+    public static function example($getShared = true)
+    {
+        $config = config('Auth');
+
+        if ($getShared) {
+            return static::getSharedInstance('extend');
+        }
+    
+        return Auth::extend('withExtend', function () use ($config) {
+            return new ExampleAdapter(
+                $config,
+                'withExtend',
+                Auth::createUserProvider($config->guards['extend']['provider'])
+            );
+        });
+    }
 }

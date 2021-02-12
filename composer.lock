@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "b4203a8a832fb2521889163a12b68d8241da8231"
+                "reference": "84c84b607a07136642879bef0f1478015e47bb0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/b4203a8a832fb2521889163a12b68d8241da8231",
-                "reference": "b4203a8a832fb2521889163a12b68d8241da8231",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/84c84b607a07136642879bef0f1478015e47bb0b",
+                "reference": "84c84b607a07136642879bef0f1478015e47bb0b",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-11T11:42:09+00:00"
+            "time": "2021-02-12T03:00:27+00:00"
         },
         {
             "name": "codeigniter4/framework",
