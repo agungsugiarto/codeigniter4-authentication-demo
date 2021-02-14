@@ -9,6 +9,7 @@ use CodeIgniter\Filters\Honeypot;
 use Fluent\Auth\Filters\AuthenticationFilter;
 use Fluent\Auth\Filters\ConfirmPasswordFilter;
 use Fluent\Auth\Filters\EmailVerifiedFilter;
+use Fluent\Auth\Filters\RedirectAuthenticatedFilter;
 use Fluent\Auth\Filters\ThrottleFilter;
 
 class Filters extends BaseConfig
@@ -24,7 +25,11 @@ class Filters extends BaseConfig
         'toolbar'  => DebugToolbar::class,
         'honeypot' => Honeypot::class,
         'auth'     => AuthenticationFilter::class,
-        'confirm'  => ConfirmPasswordFilter::class,
+        'confirm'  => [
+            AuthenticationFilter::class,
+            ConfirmPasswordFilter::class,
+        ],
+        'guest'    => RedirectAuthenticatedFilter::class,
         'throttle' => ThrottleFilter::class,
         'verified' => EmailVerifiedFilter::class,
     ];
