@@ -47,6 +47,17 @@
                             <button type="submit" class="btn btn-dark">Sign in</button>
                         </div>
                     </form>
+                    <div class="mt-3 mb-4 text-center">
+                        <span class="fw-normal">or login with</span>
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <a href="<?= site_url('socialite/facebook') ?>" class="btn btn-icon-only btn-pill btn-outline-gray-400 text-facebook me-2" type="button" aria-label="facebook button" title="facebook button">
+                            <span aria-hidden="true" class="fab fa-facebook-f"></span>
+                        </a>
+                        <a href="<?= site_url('socialite/github') ?>" class="btn btn-icon-only btn-pill btn-outline-gray-400 text-facebook" type="button" aria-label="github button" title="github button">
+                            <span aria-hidden="true" class="fab fa-github"></span>
+                        </a>
+                    </div>
                     <div class="d-flex justify-content-center align-items-center mt-4">
                         <span class="fw-normal">
                             Not registered?

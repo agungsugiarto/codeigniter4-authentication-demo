@@ -39,6 +39,8 @@ class UserModel extends Model implements UserProviderInterface
         'password',
         'email_verified_at',
         'remember_token',
+        'provider',
+        'provider_id',
     ];
 
     /**
@@ -61,5 +63,21 @@ class UserModel extends Model implements UserProviderInterface
             'username' => $faker->userName,
             'password' => 'secret',
         ];
+    }
+
+    /**
+     * First or create.
+     * 
+     * @return mixed
+     */
+    public function firstOrCreate(array $attributes, array $values = [])
+    {
+        if (! is_null($intance = $this->where($attributes)->first())) {
+            return $intance;
+        }
+
+        $this->insert($attributes + $values);
+
+        return $this->find($this->insertID);
     }
 }
