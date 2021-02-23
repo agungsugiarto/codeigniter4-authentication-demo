@@ -48,3 +48,19 @@ Events::on('pre_system', function () {
         Services::toolbar()->respond();
     }
 });
+
+/**
+ * --------------------------------------------------------------------
+ * CodeIgniter4 Authentication Listeners.
+ * --------------------------------------------------------------------
+ * This event will be dispatch to send reset password and verify email,
+ * you are free to implement this dispatcher, example using
+ * twilio service to send sms.
+ */
+Events::on(\Fluent\Auth\Contracts\VerifyEmailInterface::class, function ($email) {
+    (new \App\Notifications\VerificationNotification($email))->send();
+});
+
+Events::on(\Fluent\Auth\Contracts\ResetPasswordInterface::class, function ($email, $token) {
+    (new \App\Notifications\ResetPasswordNotification($email, $token))->send();
+});

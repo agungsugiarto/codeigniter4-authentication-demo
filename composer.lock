@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "agungsugiarto/codeigniter4-authentication",
-            "version": "dev-master",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "482a2f224f515f75c85d8c9be2bbdfa377cfb7cc"
+                "reference": "c8cc75ed159ebc6726fce7285a3e153fedcfa4cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/482a2f224f515f75c85d8c9be2bbdfa377cfb7cc",
-                "reference": "482a2f224f515f75c85d8c9be2bbdfa377cfb7cc",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/c8cc75ed159ebc6726fce7285a3e153fedcfa4cc",
+                "reference": "c8cc75ed159ebc6726fce7285a3e153fedcfa4cc",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,6 @@
                 "laminas/laminas-coding-standard": "^2.1",
                 "phpunit/phpunit": "^9.1"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -72,7 +71,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-16T04:47:36+00:00"
+            "time": "2021-02-23T07:03:49+00:00"
         },
         {
             "name": "agungsugiarto/codeigniter4-socialite",

@@ -1,10 +1,8 @@
 <?php
 
-namespace Fluent\Socialite\Config;
+namespace Config;
 
-use CodeIgniter\Config\BaseConfig;
-
-class Socialite extends BaseConfig
+class Socialite extends \Fluent\Socialite\Config\Socialite
 {
     /**
      * --------------------------------------------------------------------------
