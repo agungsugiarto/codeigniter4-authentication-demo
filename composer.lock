@@ -8,27 +8,31 @@
     "packages": [
         {
             "name": "agungsugiarto/codeigniter4-authentication",
-            "version": "1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "c8cc75ed159ebc6726fce7285a3e153fedcfa4cc"
+                "reference": "1b2020d9c708dd54d0793b96be726a65c5bbb880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/c8cc75ed159ebc6726fce7285a3e153fedcfa4cc",
-                "reference": "c8cc75ed159ebc6726fce7285a3e153fedcfa4cc",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/1b2020d9c708dd54d0793b96be726a65c5bbb880",
+                "reference": "1b2020d9c708dd54d0793b96be726a65c5bbb880",
                 "shasum": ""
             },
             "require": {
                 "codeigniter4/framework": "^4.1",
                 "php": "^7.3 || ^8.0"
             },
+            "provide": {
+                "codeigniter4/authentication-implementation": "1.0"
+            },
             "require-dev": {
                 "fakerphp/faker": "^1.13",
                 "laminas/laminas-coding-standard": "^2.1",
                 "phpunit/phpunit": "^9.1"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -71,7 +75,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-23T07:03:49+00:00"
+            "time": "2021-02-25T11:49:15+00:00"
         },
         {
             "name": "agungsugiarto/codeigniter4-socialite",
@@ -1182,16 +1186,16 @@
         },
         {
             "name": "phar-io/version",
-            "version": "3.0.4",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "e4782611070e50613683d2b9a57730e9a3ba5451"
+                "reference": "bae7c545bef187884426f042434e561ab1ddb182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/version/zipball/e4782611070e50613683d2b9a57730e9a3ba5451",
-                "reference": "e4782611070e50613683d2b9a57730e9a3ba5451",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/bae7c545bef187884426f042434e561ab1ddb182",
+                "reference": "bae7c545bef187884426f042434e561ab1ddb182",
                 "shasum": ""
             },
             "require": {
@@ -1227,9 +1231,9 @@
             "description": "Library for handling version information and constraints",
             "support": {
                 "issues": "https://github.com/phar-io/version/issues",
-                "source": "https://github.com/phar-io/version/tree/3.0.4"
+                "source": "https://github.com/phar-io/version/tree/3.1.0"
             },
-            "time": "2020-12-13T23:18:30+00:00"
+            "time": "2021-02-23T14:00:09+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
