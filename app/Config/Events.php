@@ -51,6 +51,14 @@ Events::on('pre_system', function () {
 
 /**
  * --------------------------------------------------------------------
+ * Register Auth Service Provider.
+ * --------------------------------------------------------------------
+ * Register auth service provider to lifecycle application.
+ */
+Events::on('pre_system', [\App\Providers\AuthServiceProvider::class, 'register']);
+
+/**
+ * --------------------------------------------------------------------
  * CodeIgniter4 Authentication Listeners.
  * --------------------------------------------------------------------
  * This event will be dispatch to send reset password and verify email,

@@ -52,15 +52,11 @@ class Auth extends \Fluent\Auth\Config\Auth
             'driver'   => TokenAdapter::class,
             'provider' => 'users',
         ],
+        // Example implementation
         'example' => [
-            'driver' => ExampleAdapter::class,
-            'provider' => 'users',
-        ],
-        'extend' => [
-            'driver' => 'withExtend',
-            'provider' => 'users',
-        ],
-        // etc your implementation
+            'driver' => 'exampleGuard',
+            'provider' => 'custom',
+        ]
     ];
 
     /**
@@ -89,6 +85,11 @@ class Auth extends \Fluent\Auth\Config\Auth
             'connection' => 'default',
             'driver'     => 'connection',
             'table'      => 'users',
+        ],
+        // Example implementation
+        'custom' => [
+            'driver' => 'exampleProvider',
+            'table'  => UserModel::class,
         ],
     ];
 

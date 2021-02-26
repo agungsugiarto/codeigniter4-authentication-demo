@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "1b2020d9c708dd54d0793b96be726a65c5bbb880"
+                "reference": "2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/1b2020d9c708dd54d0793b96be726a65c5bbb880",
-                "reference": "1b2020d9c708dd54d0793b96be726a65c5bbb880",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba",
+                "reference": "2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba",
                 "shasum": ""
             },
             "require": {
@@ -75,7 +75,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-25T11:49:15+00:00"
+            "time": "2021-02-26T04:00:07+00:00"
         },
         {
             "name": "agungsugiarto/codeigniter4-socialite",
@@ -579,24 +579,26 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "6ede70583e101030bcace4dcddd648f760ddf642"
+                "reference": "6cccbddfcfc742eb02158d6137ca5687d92cee32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/6ede70583e101030bcace4dcddd648f760ddf642",
-                "reference": "6ede70583e101030bcace4dcddd648f760ddf642",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/6cccbddfcfc742eb02158d6137ca5687d92cee32",
+                "reference": "6cccbddfcfc742eb02158d6137ca5687d92cee32",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0 || ^8.0"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.1 || ^9.3",
-                "squizlabs/php_codesniffer": "^3.5"
+                "psalm/plugin-phpunit": "^0.15.1",
+                "squizlabs/php_codesniffer": "^3.5",
+                "vimeo/psalm": "^4.6"
             },
             "type": "library",
             "extra": {
@@ -635,7 +637,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-09-14T14:23:00+00:00"
+            "time": "2021-02-25T21:54:58+00:00"
         },
         {
             "name": "psr/http-client",

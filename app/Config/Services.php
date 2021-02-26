@@ -23,25 +23,4 @@ use Fluent\Auth\Facades\Auth;
  */
 class Services extends BaseService
 {
-    /**
-     * Example using service with method extend to driver.
-     * 
-     * @return AuthFactoryInterface|AuthenticationInterface
-     */
-    public static function example($getShared = true)
-    {
-        $config = config('Auth');
-
-        if ($getShared) {
-            return static::getSharedInstance('extend');
-        }
-    
-        return Auth::extend('withExtend', function () use ($config) {
-            return new ExampleAdapter(
-                $config,
-                'withExtend',
-                Auth::createUserProvider($config->guards['extend']['provider'])
-            );
-        });
-    }
 }

@@ -7,17 +7,10 @@ class Home extends BaseController
     public function index()
     {
         /**	
-         * Example using service with method extend to driver,	
-         * see service at \app\Config\Services.	
+         * Example using guard and driver implementation,
+         * now we can call this guard example.	
          * 	
-         * d(\Config\Services::example()->guard('extend'));	
-         */	
-
-        /**	
-         * Example using driver already directly in config. Since codeigniter4 don't have dependency	
-         * injection like container, i am recommend this way because is shortly syntax.	
-         * 	
-         * d(\Fluent\Auth\Facades\Auth::guard('example'));	
+         * dd(\Fluent\Auth\Facades\Auth::guard('example'));	
          */
         return view('welcome_message');
     }
