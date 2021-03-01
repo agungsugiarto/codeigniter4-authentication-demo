@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba"
+                "reference": "1afdc6cbdb04f82ec60d8fc102fdb003c65ac6e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba",
-                "reference": "2bdaba49a2f5e3c09dfb146b1d464a04f45c51ba",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/1afdc6cbdb04f82ec60d8fc102fdb003c65ac6e9",
+                "reference": "1afdc6cbdb04f82ec60d8fc102fdb003c65ac6e9",
                 "shasum": ""
             },
             "require": {
@@ -75,7 +75,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-26T04:00:07+00:00"
+            "time": "2021-03-01T07:18:09+00:00"
         },
         {
             "name": "agungsugiarto/codeigniter4-socialite",

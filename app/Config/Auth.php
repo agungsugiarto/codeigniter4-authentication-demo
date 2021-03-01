@@ -5,7 +5,6 @@ namespace Config;
 use Fluent\Auth\Adapters\SessionAdapter;
 use Fluent\Auth\Adapters\TokenAdapter;
 use App\Models\UserModel;
-use Fluent\Auth\Passwords\PasswordResetRepository;
 
 class Auth extends \Fluent\Auth\Config\Auth
 {
@@ -21,9 +20,9 @@ class Auth extends \Fluent\Auth\Config\Auth
      * @var array
      */
     public $defaults = [
-        'guard'     => 'web',
-        'provider'  => 'users',
-        'passwords' => 'users',
+        'guard'    => 'web',
+        'provider' => 'users',
+        'password' => 'users',
     ];
 
     /**
@@ -110,10 +109,11 @@ class Auth extends \Fluent\Auth\Config\Auth
      */
     public $passwords = [
         'users' => [
-            'provider' => 'users',
-            'table'    => PasswordResetRepository::class,
-            'expire'   => 60,
-            'throttle' => 60,
+            'provider'   => 'users',
+            'connection' => 'default',
+            'table'      => 'auth_password_resets',
+            'expire'     => 60,
+            'throttle'   => 60,
         ],
     ];
 
