@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Fluent\Auth\Facades\Auth;
+
 class Home extends BaseController
 {
     public function index()

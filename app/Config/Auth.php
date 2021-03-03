@@ -55,7 +55,11 @@ class Auth extends \Fluent\Auth\Config\Auth
         'example' => [
             'driver' => 'exampleGuard',
             'provider' => 'custom',
-        ]
+        ],
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
     ];
 
     /**

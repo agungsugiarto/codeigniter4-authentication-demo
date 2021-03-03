@@ -12,12 +12,14 @@ use Fluent\Auth\Traits\AuthenticatableTrait;
 use Fluent\Auth\Traits\CanResetPasswordTrait;
 use Fluent\Auth\Traits\HasAccessTokensTrait;
 use Fluent\Auth\Traits\MustVerifyEmailTrait;
+use Fluent\JWTAuth\Contracts\JWTSubjectInterface;
 
 class User extends Entity implements
     AuthenticatorInterface,
     HasAccessTokensInterface,
     ResetPasswordInterface,
-    VerifyEmailInterface
+    VerifyEmailInterface,
+    JWTSubjectInterface
 {
     use AuthenticatableTrait;
     use CanResetPasswordTrait;
@@ -44,5 +46,21 @@ class User extends Entity implements
         $this->attributes['password'] = Hash::make($password);
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getAuthId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
