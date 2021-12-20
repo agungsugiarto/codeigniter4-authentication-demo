@@ -2,18 +2,10 @@
 
 namespace App\Controllers;
 
-use Fluent\Auth\Facades\Auth;
-
 class Home extends BaseController
 {
     public function index()
     {
-        /**	
-         * Example using guard and driver implementation,
-         * now we can call this guard example.	
-         * 	
-         * dd(\Fluent\Auth\Facades\Auth::guard('example'));	
-         */
         return view('welcome_message');
     }
 

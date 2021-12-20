@@ -2,11 +2,7 @@
 
 namespace Config;
 
-use App\Providers\ExampleAdapter;
 use CodeIgniter\Config\BaseService;
-use Fluent\Auth\Contracts\AuthFactoryInterface;
-use Fluent\Auth\Contracts\AuthenticationInterface;
-use Fluent\Auth\Facades\Auth;
 
 /**
  * Services Configuration file.
@@ -23,4 +19,14 @@ use Fluent\Auth\Facades\Auth;
  */
 class Services extends BaseService
 {
+    /*
+     * public static function example($getShared = true)
+     * {
+     *     if ($getShared) {
+     *         return static::getSharedInstance('example');
+     *     }
+     *
+     *     return new \CodeIgniter\Example();
+     * }
+     */
 }

@@ -1,4 +1,4 @@
-<?= $this->extend('Email\layout') ?>
+<?= $this->extend('Email/layout') ?>
 
 <?= $this->section('content') ?>
 <tr>

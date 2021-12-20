@@ -7,6 +7,7 @@ use CodeIgniter\Http\RedirectResponse;
 use CodeIgniter\View\RendererInterface;
 use Fluent\Auth\Facades\Auth;
 use Fluent\Auth\Facades\RateLimiter;
+use Fluent\Auth\Helpers\Str;
 
 use function func_get_args;
 use function is_array;
@@ -37,7 +38,7 @@ class AuthenticatedSessionController extends BaseController
      */
     public function new()
     {
-        return view('Auth\login');
+        return view('Auth/login');
     }
 
     /**
@@ -135,6 +136,6 @@ class AuthenticatedSessionController extends BaseController
      */
     public function throttleKey()
     {
-        return strtolower($this->request->getPost('email')) . '_' . $this->request->getIPAddress();
+        return strtolower(Str::extractName($this->request->getPost('email'))) . '_' . str_replace("::", "", $this->request->getIPAddress());
     }
 }

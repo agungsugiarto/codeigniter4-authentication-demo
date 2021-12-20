@@ -2,8 +2,6 @@
 
 namespace Config;
 
-use Fluent\Auth\Facades\Auth;
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -23,38 +21,23 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
-/*
+/**
  * --------------------------------------------------------------------
  * Route Definitions
  * --------------------------------------------------------------------
  */
 
-// Includes auth routes.
-Auth::routes([]);
+// Load the web routing file.
+if (file_exists(ROOTPATH . 'routes/web.php')) {
+    require ROOTPATH . 'routes/web.php';
+}
 
-// Login user using authentication JWT.
-$routes->group('jwt', ['namespace' => 'App\Controllers\JWTAuth'], function ($routes) {
-    $routes->post('login', 'JWTAuthController::login');
-    $routes->post('logout', 'JWTAuthController::logout', ['filter' => 'auth:api']);
-    $routes->post('refresh', 'JWTAuthController::refresh', ['filter' => 'auth:api']);
-    $routes->match(['get', 'post'], 'user', 'JWTAuthController::user', ['filter' => 'auth:api']);
-});
-
-// Socialite authentication
-$routes->get('socialite/(:alphanum)', 'SocialiteController::redirectProvider/$1');
-$routes->get('socialite/(:alphanum)/callback', 'SocialiteController::providerCallback/$1');
-
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-
-// Example route dashboard.
-$routes->group('dashboard', ['filter' => 'auth:web'], function ($routes) {
-    $routes->get('/', 'Home::dashboard', ['filter' => 'verified']);
-    $routes->get('confirm', 'Home::confirm', ['filter' => 'confirm']);
-});
+// Load the api routing file.
+if (file_exists(ROOTPATH . 'routes/api.php')) {
+    require ROOTPATH . 'routes/api.php';
+}
 
 /*
  * --------------------------------------------------------------------
