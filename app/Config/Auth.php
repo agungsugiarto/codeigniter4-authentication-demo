@@ -5,6 +5,7 @@ namespace Config;
 use Fluent\Auth\Adapters\SessionAdapter;
 use Fluent\Auth\Adapters\TokenAdapter;
 use App\Models\UserModel;
+use Fluent\JWTAuth\JWTGuard;
 
 class Auth extends \Fluent\Auth\Config\Auth
 {
@@ -49,6 +50,10 @@ class Auth extends \Fluent\Auth\Config\Auth
         ],
         'token' => [
             'driver'   => TokenAdapter::class,
+            'provider' => 'users',
+        ],
+        'api' => [
+            'driver'   => JWTGuard::class,
             'provider' => 'users',
         ],
         // etc your implementation
