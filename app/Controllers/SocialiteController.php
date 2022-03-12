@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use Exception;
 use Fluent\Auth\Facades\Auth;
 use Fluent\Socialite\Facades\Socialite;
 
@@ -19,7 +20,11 @@ class SocialiteController extends BaseController
 
     public function redirectProvider(string $provider)
     {
-        return Socialite::driver($provider)->redirect();
+        try {
+            return Socialite::driver($provider)->redirect();
+        } catch (Exception $e) {
+            return redirect()->to('login')->with('errors', [$e->getMessage()]);
+        }
     }
 
     /**
@@ -32,19 +37,23 @@ class SocialiteController extends BaseController
      */
     public function providerCallback(string $provider)
     {
-        $user = Socialite::driver($provider)->user();
+        try {
+            $user = Socialite::driver($provider)->user();
+            
+            $authUser = $this->model->firstOrCreate(
+                ['provider_id' => $user->getId()],
+                [
+                    'username' => $user->getNickname(),
+                    'email'    => $user->getEmail(),
+                    'provider' => $provider,
+                ]
+            );
+        } catch (Exception $e) {
+            return redirect()->to('login')->with('errors', [$e->getMessage()]);
+        }
 
-        $authUser = $this->model->firstOrCreate(
-            ['provider_id' => $user->getId()],
-            [
-                'username'    => $user->getNickname(),
-                'email'       => $user->getEmail(),
-                'provider'    => $provider,
-            ]
-        );
+        Auth::login($authUser, true);
 
-        Auth::login($authUser);
-
-        return redirect('dashboard');
+        return redirect(config('Auth')->home)->withCookies();
     }
 }
