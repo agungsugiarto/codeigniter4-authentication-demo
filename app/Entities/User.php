@@ -2,26 +2,30 @@
 
 namespace App\Entities;
 
-use CodeIgniter\Entity\Entity;
-use Fluent\Auth\Contracts\AuthenticatorInterface;
-use Fluent\Auth\Contracts\HasAccessTokensInterface;
-use Fluent\Auth\Contracts\ResetPasswordInterface;
-use Fluent\Auth\Contracts\VerifyEmailInterface;
 use Fluent\Auth\Facades\Hash;
+use CodeIgniter\Entity\Entity;
+use Fluent\Auth\Traits\AuthorizableTrait;
 use Fluent\Auth\Traits\AuthenticatableTrait;
-use Fluent\Auth\Traits\CanResetPasswordTrait;
 use Fluent\Auth\Traits\HasAccessTokensTrait;
 use Fluent\Auth\Traits\MustVerifyEmailTrait;
+use Fluent\Auth\Traits\CanResetPasswordTrait;
+use Fluent\Auth\Contracts\VerifyEmailInterface;
+use Fluent\Auth\Contracts\AuthorizableInterface;
+use Fluent\Auth\Contracts\AuthenticatorInterface;
+use Fluent\Auth\Contracts\ResetPasswordInterface;
 use Fluent\JWTAuth\Contracts\JWTSubjectInterface;
+use Fluent\Auth\Contracts\HasAccessTokensInterface;
 
 class User extends Entity implements
     AuthenticatorInterface,
+    AuthorizableInterface,
     HasAccessTokensInterface,
     ResetPasswordInterface,
     VerifyEmailInterface,
     JWTSubjectInterface
 {
     use AuthenticatableTrait;
+    use AuthorizableTrait;
     use CanResetPasswordTrait;
     use HasAccessTokensTrait;
     use MustVerifyEmailTrait;

@@ -8,7 +8,7 @@
         "php": "^7.3||^8.0",
         "codeigniter4/framework": "^4",
         "agungsugiarto/codeigniter4-socialite": "5.x-dev",
-        "agungsugiarto/codeigniter4-authentication": "1.x-dev",
+        "agungsugiarto/codeigniter4-authentication": "2.x-dev",
         "agungsugiarto/codeigniter4-authentication-jwt": "1.x-dev"
     },
     "require-dev": {

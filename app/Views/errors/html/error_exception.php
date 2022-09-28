@@ -21,8 +21,8 @@
         <div class="container">
             <h1><?= esc($title), esc($exception->getCode() ? ' #' . $exception->getCode() : '') ?></h1>
             <p>
-                <?= esc($exception->getMessage()) ?>
-                <a href="https://www.google.com/search?q=<?= urlencode($title . ' ' . preg_replace('#\'.*\'|".*"#Us', '', $exception->getMessage())) ?>"
+                <?= nl2br(esc($exception->getMessage())) ?>
+                <a href="https://www.duckduckgo.com/?q=<?= urlencode($title . ' ' . preg_replace('#\'.*\'|".*"#Us', '', $exception->getMessage())) ?>"
                    rel="noreferrer" target="_blank">search &rarr;</a>
             </p>
         </div>
@@ -30,7 +30,7 @@
 
     <!-- Source -->
     <div class="container">
-        <p><b><?= esc(static::cleanPath($file, $line)) ?></b> at line <b><?= esc($line) ?></b></p>
+        <p><b><?= esc(clean_path($file)) ?></b> at line <b><?= esc($line) ?></b></p>
 
         <?php if (is_file($file)) : ?>
             <div class="source">
@@ -43,12 +43,11 @@
 
         <ul class="tabs" id="tabs">
             <li><a href="#backtrace">Backtrace</a></li>
-                <li><a href="#server">Server</a></li>
-                <li><a href="#request">Request</a></li>
-                <li><a href="#response">Response</a></li>
-                <li><a href="#files">Files</a></li>
-                <li><a href="#memory">Memory</a></li>
-            </li>
+            <li><a href="#server">Server</a></li>
+            <li><a href="#request">Request</a></li>
+            <li><a href="#response">Response</a></li>
+            <li><a href="#files">Files</a></li>
+            <li><a href="#memory">Memory</a></li>
         </ul>
 
         <div class="tab-content">
@@ -58,18 +57,19 @@
 
                 <ol class="trace">
                 <?php foreach ($trace as $index => $row) : ?>
+
                     <li>
                         <p>
                             <!-- Trace info -->
                             <?php if (isset($row['file']) && is_file($row['file'])) :?>
                                 <?php
                                 if (isset($row['function']) && in_array($row['function'], ['include', 'include_once', 'require', 'require_once'], true)) {
-                                    echo esc($row['function'] . ' ' . static::cleanPath($row['file']));
+                                    echo esc($row['function'] . ' ' . clean_path($row['file']));
                                 } else {
-                                    echo esc(static::cleanPath($row['file']) . ' : ' . $row['line']);
+                                    echo esc(clean_path($row['file']) . ' : ' . $row['line']);
                                 }
                                 ?>
-                            <?php else : ?>
+                            <?php else: ?>
                                 {PHP internal code}
                             <?php endif; ?>
 
@@ -89,9 +89,10 @@
                                             $mirror = isset($row['class']) ? new \ReflectionMethod($row['class'], $row['function']) : new \ReflectionFunction($row['function']);
                                             $params = $mirror->getParameters();
                                         }
+
                                         foreach ($row['args'] as $key => $value) : ?>
                                             <tr>
-                                                <td><code><?= esc(isset($params[$key]) ? '$' . $params[$key]->name : "#$key") ?></code></td>
+                                                <td><code><?= esc(isset($params[$key]) ? '$' . $params[$key]->name : "#{$key}") ?></code></td>
                                                 <td><pre><?= esc(print_r($value, true)) ?></pre></td>
                                             </tr>
                                         <?php endforeach ?>
@@ -104,7 +105,7 @@
                             <?php endif; ?>
 
                             <?php if (! isset($row['class']) && isset($row['function'])) : ?>
-                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp; <?= esc($row['function']) ?>()
+                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp;    <?= esc($row['function']) ?>()
                             <?php endif; ?>
                         </p>
 
@@ -124,7 +125,8 @@
             <!-- Server -->
             <div class="content" id="server">
                 <?php foreach (['_SERVER', '_SESSION'] as $var) : ?>
-                    <?php if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
+                    <?php
+                    if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
                         continue;
                     } ?>
 
@@ -144,7 +146,7 @@
                                 <td>
                                     <?php if (is_string($value)) : ?>
                                         <?= esc($value) ?>
-                                    <?php else : ?>
+                                    <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
                                     <?php endif; ?>
                                 </td>
@@ -174,7 +176,7 @@
                                 <td>
                                     <?php if (is_string($value)) : ?>
                                         <?= esc($value) ?>
-                                    <?php else : ?>
+                                    <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
                                     <?php endif; ?>
                                 </td>
@@ -193,11 +195,11 @@
                     <tbody>
                         <tr>
                             <td style="width: 10em">Path</td>
-                            <td><?= esc($request->uri) ?></td>
+                            <td><?= esc($request->getUri()) ?></td>
                         </tr>
                         <tr>
                             <td>HTTP Method</td>
-                            <td><?= esc($request->getMethod(true)) ?></td>
+                            <td><?= esc(strtoupper($request->getMethod())) ?></td>
                         </tr>
                         <tr>
                             <td>IP Address</td>
@@ -226,7 +228,8 @@
 
                 <?php $empty = true; ?>
                 <?php foreach (['_GET', '_POST', '_COOKIE'] as $var) : ?>
-                    <?php if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
+                    <?php
+                    if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
                         continue;
                     } ?>
 
@@ -248,7 +251,7 @@
                                 <td>
                                     <?php if (is_string($value)) : ?>
                                         <?= esc($value) ?>
-                                    <?php else : ?>
+                                    <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
                                     <?php endif; ?>
                                 </td>
@@ -260,6 +263,7 @@
                 <?php endforeach ?>
 
                 <?php if ($empty) : ?>
+
                     <div class="alert">
                         No $_GET, $_POST, or $_COOKIE Information to show.
                     </div>
@@ -268,6 +272,7 @@
 
                 <?php $headers = $request->getHeaders(); ?>
                 <?php if (! empty($headers)) : ?>
+
                     <h3>Headers</h3>
 
                     <table>
@@ -279,10 +284,12 @@
                         </thead>
                         <tbody>
                         <?php foreach ($headers as $value) : ?>
-                            <?php if (empty($value)) {
+                            <?php
+                            if (empty($value)) {
                                 continue;
-                            } ?>
-                            <?php if (! is_array($value)) {
+                            }
+
+                            if (! is_array($value)) {
                                 $value = [$value];
                             } ?>
                             <?php foreach ($value as $h) : ?>
@@ -307,7 +314,7 @@
                 <table>
                     <tr>
                         <td style="width: 15em">Response Status</td>
-                        <td><?= esc($response->getStatusCode() . ' - ' . $response->getReason()) ?></td>
+                        <td><?= esc($response->getStatusCode() . ' - ' . $response->getReasonPhrase()) ?></td>
                     </tr>
                 </table>
 
@@ -343,7 +350,7 @@
 
                 <ol>
                 <?php foreach ($files as $file) :?>
-                    <li><?= esc(static::cleanPath($file)) ?></li>
+                    <li><?= esc(clean_path($file)) ?></li>
                 <?php endforeach ?>
                 </ol>
             </div>
@@ -379,7 +386,7 @@
 
             <p>
                 Displayed at <?= esc(date('H:i:sa')) ?> &mdash;
-                PHP: <?= esc(phpversion()) ?>  &mdash;
+                PHP: <?= esc(PHP_VERSION) ?>  &mdash;
                 CodeIgniter: <?= esc(\CodeIgniter\CodeIgniter::CI_VERSION) ?>
             </p>
 

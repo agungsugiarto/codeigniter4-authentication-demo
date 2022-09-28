@@ -10,10 +10,19 @@ use Fluent\JWTAuth\JWTGuard;
 class AuthServiceProvider extends AbstractServiceProvider
 {
     /**
+     * The policy mappings for the application.
+     *
+     * @var array<class-string, class-string>
+     */
+    protected static $policies = [];
+
+    /**
      * {@inheritdoc}
      */
     public static function register()
     {
+        static::registerPolicies();
+
         Auth::extend(JWTGuard::class, function ($auth, $name, array $config) {
             return new JWTGuard(
                 Services::getSharedInstance('jwt'),
