@@ -7,7 +7,7 @@ use Config\Services;
 
 // Login user using authentication JWT.
 $routes->group('api/v1', function (Routes $routes) {
-    $routes->group('basic', ['filter' => 'auth.basic:web,email,onceBasic'], function ($routes) {
+    $routes->group('basic', ['filter' => ['auth.basic:web,email,onceBasic', 'can:admin']], function ($routes) {
         $routes->get('user', function () {
             return Services::response()->setJSON(auth()->user());
         });

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Fluent\Auth\AbstractServiceProvider;
 use Fluent\Auth\Facades\Auth;
+use Fluent\Auth\Facades\Gate;
 use Fluent\JWTAuth\Config\Services;
 use Fluent\JWTAuth\JWTGuard;
 
@@ -29,6 +30,10 @@ class AuthServiceProvider extends AbstractServiceProvider
                 Services::getSharedInstance('request'),
                 $auth->createUserProvider($config['provider']),
             );
+        });
+
+        Gate::define('admin', function ($user) {
+            return $user->id == 1;
         });
     }
 }

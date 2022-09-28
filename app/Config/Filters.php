@@ -2,18 +2,19 @@
 
 namespace Config;
 
-use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
-use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
+use CodeIgniter\Config\BaseConfig;
+use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
-use Fluent\Auth\Filters\AuthenticationBasicFilter;
+use Fluent\Auth\Filters\ThrottleFilter;
+use Fluent\Auth\Filters\AuthorizeFilter;
+use Fluent\Auth\Filters\EmailVerifiedFilter;
 use Fluent\Auth\Filters\AuthenticationFilter;
 use Fluent\Auth\Filters\ConfirmPasswordFilter;
-use Fluent\Auth\Filters\EmailVerifiedFilter;
+use Fluent\Auth\Filters\AuthenticationBasicFilter;
 use Fluent\Auth\Filters\RedirectAuthenticatedFilter;
-use Fluent\Auth\Filters\ThrottleFilter;
 
 class Filters extends BaseConfig
 {
@@ -31,6 +32,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'auth'          => AuthenticationFilter::class,
         'auth.basic'    => AuthenticationBasicFilter::class,
+        'can'           => AuthorizeFilter::class,
         'confirm'  => [
             AuthenticationFilter::class,
             ConfirmPasswordFilter::class,
