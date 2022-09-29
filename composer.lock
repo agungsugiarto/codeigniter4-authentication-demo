@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungsugiarto/codeigniter4-authentication.git",
-                "reference": "3ec61e7bc1fde84653fd55bca06e28328440c73d"
+                "reference": "a4206f3ca27acba215c0d74b5f753cf4b40428f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/3ec61e7bc1fde84653fd55bca06e28328440c73d",
-                "reference": "3ec61e7bc1fde84653fd55bca06e28328440c73d",
+                "url": "https://api.github.com/repos/agungsugiarto/codeigniter4-authentication/zipball/a4206f3ca27acba215c0d74b5f753cf4b40428f1",
+                "reference": "a4206f3ca27acba215c0d74b5f753cf4b40428f1",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
             ],
             "support": {
                 "issues": "https://github.com/agungsugiarto/codeigniter4-authentication/issues",
-                "source": "https://github.com/agungsugiarto/codeigniter4-authentication/tree/v2.0.1"
+                "source": "https://github.com/agungsugiarto/codeigniter4-authentication/tree/v2.0.2"
             },
             "funding": [
                 {
@@ -75,7 +75,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-09-28T03:00:12+00:00"
+            "time": "2022-09-29T01:40:58+00:00"
         },
         {
             "name": "agungsugiarto/codeigniter4-authentication-jwt",

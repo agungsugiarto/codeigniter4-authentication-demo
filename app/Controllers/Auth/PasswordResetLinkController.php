@@ -37,8 +37,7 @@ class PasswordResetLinkController extends BaseController
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         $status = Passwords::sendResetLink([
-            'email'    => $request->email,
-            'provider' => null,
+            'email' => $request->email,
         ]);
 
         return $status === PasswordBrokerInterface::RESET_LINK_SENT

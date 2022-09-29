@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Entities\User;
+use App\Models\Traits\QueryTrait;
 use CodeIgniter\Model;
 use Faker\Generator;
-use Fluent\Auth\Contracts\UserProviderInterface;
-use App\Entities\User;
 use Fluent\Auth\Traits\UserProviderTrait;
+use Fluent\Auth\Contracts\UserProviderInterface;
 
 class UserModel extends Model implements UserProviderInterface
 {
     use UserProviderTrait;
+    use QueryTrait;
 
     /**
      * Name of database table
@@ -63,21 +65,5 @@ class UserModel extends Model implements UserProviderInterface
             'username' => $faker->userName,
             'password' => 'secret',
         ];
-    }
-
-    /**
-     * First or create.
-     * 
-     * @return mixed
-     */
-    public function firstOrCreate(array $attributes, array $values = [])
-    {
-        if (! is_null($intance = $this->where($attributes)->first())) {
-            return $intance;
-        }
-
-        $this->insert($attributes + $values);
-
-        return $this->find($this->insertID);
     }
 }

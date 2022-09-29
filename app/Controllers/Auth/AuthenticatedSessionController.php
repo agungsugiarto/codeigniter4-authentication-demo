@@ -52,7 +52,7 @@ class AuthenticatedSessionController extends BaseController
         $request = (object) $this->request->getPost();
 
         // Credentials for attempt login.
-        $credentials = ['email' => $request->email, 'password' => $request->password, 'provider' => null];
+        $credentials = ['email' => $request->email, 'password' => $request->password];
 
         // Credential if remember.
         $remember = $this->filled('remember');
